@@ -1,0 +1,27 @@
+<h2>Sign up</h2>
+<%= "大侠是用其他账户登录的，请继续一步完成本站注册" if session[:commit_type] == "regist" %>
+<%= "点击返回"  %>
+<%# resource = session[:user];resource_name = session[:user] %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <%=resource_name  %>
+  <%=  f.hidden_field "name", :value => session[:user].try("name") %>
+  <%=  f.hidden_field "nick", :value => session[:user].try("nick") %>
+  <%=  f.hidden_field "image_url", :value => session[:user].try("image_url") %>
+  <%=  f.hidden_field "#{session[:provider]}_uid", :value => session[:user].try("#{session[:provider]}_uid") %>
+  <%=  f.hidden_field "#{session[:provider]}_oauth_token", :value => session[:user].try("#{session[:provider]}_oauth_token") %>
+  <%=  f.hidden_field "#{session[:provider]}_oauth_token_secret", :value => session[:user].try("#{session[:provider]}_oauth_token_secret") %>
+
+  <div><%= f.label :email %><br />
+    <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

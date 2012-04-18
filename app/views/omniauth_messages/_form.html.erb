@@ -1,0 +1,17 @@
+<%= form_for(@omniauth_message) do |f| %>
+  <% if @omniauth_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@omniauth_message.errors.count, "error") %> prohibited this omniauth_message from being saved:</h2>
+
+      <ul>
+      <% @omniauth_message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<h1>Listing omniauth_messages</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @omniauth_messages.each do |omniauth_message| %>
+  <tr>
+    <td><%= link_to 'Show', omniauth_message %></td>
+    <td><%= link_to 'Edit', edit_omniauth_message_path(omniauth_message) %></td>
+    <td><%= link_to 'Destroy', omniauth_message, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Omniauth message', new_omniauth_message_path %>
